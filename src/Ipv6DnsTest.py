@@ -10,7 +10,6 @@ from dns.resolver import *
 import time
 
 ## class to test ipv6 dns resolvability
-
 class Ipv6DnsTest(NetPerfTest):
     
     # constructor
@@ -20,36 +19,14 @@ class Ipv6DnsTest(NetPerfTest):
     
     # performTest on a single target
     def performTest(self, w_target, w_updateDb = True):
-        myres = Resolver("v6only.resolv.conf")
-        result_values = {"test-handle": "v6-dns-resol",
-                         "target-handle": w_target["target-handle"]}
-        answers = []
-        start_ts = time.time()
-        try:
-            answers = myres.query(w_target["domain"], "SOA")
-            stop_ts = time.time()
-            result_values["str01"]  = "QueryOK"
-            result_values["status"] = "OK"
-        except Timeout:
-                stop_ts = time.time()
-                result_values["str01"] = "Timeout"
-                result_values["status"] = "FAIL"
-        except NXDOMAIN:
-                stop_ts = time.time()
-                result_values["str01"] = "NXDOMAIN"
-                result_values["status"] = "FAIL"
-        except NoAnswer:
-                stop_ts = time.time()
-                result_values["str01"] = "NoAnswer"
-                result_values["status"] = "FAIL"
-        except NoNameservers:
-                stop_ts = time.time()
-                result_values["str01"] = "NoNameservers"
-                result_values["status"] = "FAIL"
+        myres = DnsHelper("v6only.resolv.conf")
+        
+        result_values = myres.query(w_target["domain"], "SOA")
+        
+        result_values["test-handle"]   = "v6-dns-resol"
+        result_values["target-handle"] = w_target["target-handle"]
                 
-        # build result set
-        result_values["real02"]  = (stop_ts - start_ts)*1000
-        for rdata in answers:
+        for rdata in result_values["answers"]:
             result_values["int01"] = rdata.serial
         
         # update db
@@ -59,8 +36,7 @@ class Ipv6DnsTest(NetPerfTest):
             print "Not updating DB"
         
         return result_values
-    ## END performTest
-    
+    ## END performTest  
 ## END class Ipv6DnsTest
 
 ## Top Level Script Block
