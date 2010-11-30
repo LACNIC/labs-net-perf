@@ -7,6 +7,7 @@
 
 # from MySQLdb import *
 import MySQLdb
+import sys
 
 class DbAccess:
     
@@ -31,9 +32,31 @@ class DbAccess:
         return self.cursor
     ## -- ##
     
+    ## filterValues
+    def _filterValues(self, w_tableName, w_values):
+        w_filteredValues = {}
+        
+        # load column names from database
+        self.cursor.execute("DESC `{0}`".format(w_tableName))
+        while True:
+            row = self.cursor.fetchone()
+            if row == None:
+                break
+            # print str(row)
+            colname = row["Field"]
+            if w_values.has_key(colname):
+                w_filteredValues[colname] = w_values[colname]
+        
+        return w_filteredValues
+    ## end filterValues
+    
     # autoInsert
     def autoInsert(self, w_tableName, w_values):
         sql = "INSERT INTO `{0}` ".format(w_tableName)
+        w_values = self._filterValues(w_tableName, w_values)
+        # print str(w_values)
+        # sys.exit()
+        
         
         sqlCols = " ("
         sqlVals = " VALUES ("

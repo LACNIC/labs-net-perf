@@ -13,14 +13,15 @@ class DnsHelper:
     resolver = None
     
     def __init__(self, w_file=None):
-        resolver = Resolver(w_file)
+        self.resolver = Resolver(w_file)
     ## END init
         
     def query(self, w_rname, w_rtype):
         result_values = {"answers": None}
+        start_ts = time.time()
         
         try:
-            answers = myres.query(w_rname, w_rtype)
+            answers = self.resolver.query(w_rname, w_rtype)
             stop_ts = time.time()
             result_values["status"]  = "OK"
             result_values["answers"] = answers

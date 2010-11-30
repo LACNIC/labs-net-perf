@@ -12,6 +12,7 @@ import sys
 import Targets
 import TestingFramework
 import Ipv6DnsTest
+import Web6Discovery
 
 # main
 print "NET-PERF (c) CarlosM carlos@lacnic.net"
@@ -34,9 +35,16 @@ for o,a in opts:
         Targets.target_crud_main(a, opts, args)
         sys.exit(0)
     if o in ("--test"):
-        print "Performing test (%s, %s) " % (str(opts), str(args))
-        tst1 = Ipv6DnsTest.Ipv6DnsTest()
-        tst1.testAllTargets()
+        if opts[0][1] == "v6-dns-resol":
+            print "Performing test (%s, %s) " % (str(opts), str(args))
+            tst1 = Ipv6DnsTest.Ipv6DnsTest()
+            tst1.testAllTargets()
+        if opts[0][1] == "v6-serv-disc":
+            print "Performing test (%s, %s) " % (str(opts), str(args))
+            tst1 = Web6Discovery.Web6Discovery()
+            tst1.testAllTargets()            
+        else:
+            print "Test %s not yet implemented!" % str(opts[0][1])
         
 print "END RUN: net-perf"
 ################################################################################

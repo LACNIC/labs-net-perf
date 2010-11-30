@@ -55,6 +55,18 @@ class NetPerfTest:
     ## END testAllTargets
 ## END NetPerfTest
 
+__x_msgCount = 0
+
+def printd(w_msg, w_testingMode):
+    global __x_msgCount
+    if w_testingMode:
+        print "%% {0:3}:{1}".format(__x_msgCount, w_msg)
+        __x_msgCount = __x_msgCount + 1
+    else:
+        # do not print anything
+        pass
+
+
 ## TOP Level Script
 if __name__ == "__main__":
     print "NetPerfTest: no tests implemented"

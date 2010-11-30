@@ -1,0 +1,27 @@
+ai, Anguilla TLD
+an, Netherlands Antilles TLD
+ar, Argentina TLD
+aw, AW TLD
+bo, Bolivia TLD
+br, Brasil TLD
+bz, Belize TLD
+cl, Chile TLD
+co, Colombia TLD
+cr, Costa Rica TLD
+cu, Cuba TLD
+do, Republica Dominicana TLD
+ec, Ecuador TLD
+gp, GP TLD
+gt, Guatemala TLD
+hn, Honduras TLD
+ht, Haiti TLD
+mx, Mexico TLD
+ni, Nicaragua TLD
+pa, Panama TLD
+pe, Peru TLD
+pr, Puerto Rico TLD
+py, Paraguay TLD
+sv, El Salvador TLD
+tt, Trinidad Tobago TLD
+uy, Uruguay TLD
+ve, Venezuela TLD

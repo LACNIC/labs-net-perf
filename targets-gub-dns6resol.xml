@@ -1,0 +1,29 @@
+<targets>
+	<target handle="ar-gub-1" domain="presidencia.gov.ar">Presidencia de la Nacion Argentina</target>
+	<target handle="cl-gub-1" domain="presidencia.cl">Gobierno de Chile</target>
+	<target handle="br-gub-1" domain="presidencia.gov.br">Presidencia del Brasil</target>
+	<target handle="bo-gub-1" domain="presidencia.gov.bo">Presidencia de Bolivia</target>
+	<target handle="py-gub-1" domain="presidencia.gov.py">Presidencia de Paraguay</target>
+	<target handle="ec-gub-1" domain="presidencia.gov.ec">Presidencia del Ecuador</target>
+	<target handle="ai-gub-1" domain="gov.ai">Gobierno de Anguilla</target>
+	<target handle="an-gub-1" domain="gov.an">Gobierno de las Antillas Holandesas</target>
+	<target handle="aw-gub-1" domain="gobierno.aw">Gobierno de Aruba (en papiamento)</target>
+	<target handle="aw-gub-2" domain="overheid.aw">Gobierno de Aruba (en holandes)</target>
+	<target handle="bz-gub-1" domain="belize.gov.bz">Gobierno de Belize</target>
+	<target handle="co-gub-1" domain="presidencia.gov.co">Gobierno de Colombia</target>
+	<target handle="cr-gub-1" domain="casapres.go.cr">Presidencia de Costa Rica</target>
+	<target handle="cu-gub-1" domain="cubagob.cu">Presidencia de Cuba</target>
+	<target handle="do-gub-1" domain="presidencia.gov.do">Gobierno de Republica Dominicana</target>
+	<target handle="gt-gub-1" domain="presidencia.gob.gt">Presidencia de Guatemala</target>
+	<target handle="hn-gub-1" domain="gob.hn">Gobierno de Honduras</target>
+	<target handle="ht-gub-1" domain="gov.ht">Gobierno de Haiti</target>
+	<target handle="mx-gub-1" domain="presidencia.gob.mx">Presidencia de Mexico</target>
+	<target handle="ni-gub-1" domain="presidencia.gob.ni">Presidencia de Nicaragua</target>
+	<target handle="pa-gub-1" domain="presidencia.gob.pa">Presidencia de Panama</target>
+	<target handle="pe-gub-1" domain="presidencia.gob.pe">Presidencia del Peru</target>
+	<target handle="pr-gub-1" domain="pr.gov">Gobierno de Puerto Rico</target>
+	<target handle="sv-gub-1" domain="presidencia.gob.sv">Presidencia de El Salvador</target>
+	<target handle="uy-gub-2" domain="uruguay.gub.uy">Gobierno Uruguayo</target>
+	<target handle="tt-gub-1" domain="gov.tt">Gobierno de Trinidad Tobago</target>
+	<target handle="ve-gub-1" domain="presidencia.gob.ve">Presidencia de Venezuela</target>
+</targets>
