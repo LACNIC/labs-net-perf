@@ -9,6 +9,8 @@ from TestingFramework import *
 from dns.resolver import *
 from DnsHelper import *
 import time
+import urllib2
+from urllib import quote_plus
 
 ## class to test ipv6 dns resolvability
 class Ipv6DnsTest(NetPerfTest):
@@ -83,7 +85,60 @@ class Ipv6DnsTest(NetPerfTest):
             print "Not updating DB"
         
         return result_values
-    ## END performTest  
+    ## END performTest
+    
+    # genReports
+    def genReports(self, w_filter=""):
+        db = DbAccess.DbAccess()
+        
+        sql = ( "SELECT A.`target-handle`, domain, status from targets AS A, `test-results` AS B WHERE " +
+               "A.`target-handle`=B.`target-handle` AND "+w_filter+" GROUP BY domain" )
+        try:
+            db.cursor.execute(sql)
+        except:
+            print "ERROR running sql %s" % sql
+            sys.exit(-1)
+            
+        # set color codes for different statuses
+        code_colors = {'OK': '00FF00', 'NoV6NS': 'FF9999', 'NoV6Answer': 'FF0000', 'GENFAIL': '000000'}
+        google_chart_url = "http://chart.apis.google.com/chart?cht=map&chs=450&"
+        chart_chld = "chld="
+        chart_chco = "chco=999999|" # init with gray background
+        
+        while True:
+            row = db.cursor.fetchone()
+            if row == None:
+                break
+            domain = row["domain"]
+            # if there is a dot at the end then chop it
+            if domain[len(domain) - 1] == ".":
+                domain = domain[0:len(domain)-1]
+            #print domain                
+            chart_chld = chart_chld + quote_plus(domain.upper()) +"|"
+            chart_chco = chart_chco + code_colors[row["status"]] + "|"
+            
+        # chop ending pipes
+        chart_chld = chart_chld[0:len(chart_chld)-1]
+        chart_chco = chart_chco[0:len(chart_chco)-1]
+        
+        google_chart_url = google_chart_url + chart_chld + "&" + chart_chco
+        
+        print "Report #1:"
+        print google_chart_url
+        
+        print "Trying to download file from Google:"
+        try:
+            finame = "metric1-map-" + time.strftime("%Y-%m-%d") + ".jpg"
+            outfile = urllib2.urlopen(google_chart_url)
+            output = open(finame,'wb')
+            output.write(outfile.read())
+            output.close()
+            print "Success! File saved as %s" % finame 
+        except:
+            print "Error!"
+        
+        
+    # END genReports
 ## END class Ipv6DnsTest
 
 ## Top Level Script Block

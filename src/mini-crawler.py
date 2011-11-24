@@ -26,7 +26,7 @@ class MyCustomCrawler(HarvestMan):
 		
 		# get TLD
 		self.tld = url_parms["tld"]
-		print "%%%%%%%%%%%%%% Opa! TLD es %s" % str(self.tld)
+		print "%%%%%%%%%%%%%% NOTICE! TLD es %s" % str(self.tld)
 		
 		# init father
 		HarvestMan.__init__(self)
@@ -39,10 +39,13 @@ class MyCustomCrawler(HarvestMan):
 		url = str(event.url)
 		url_parms = self.get_url_parms(url)
 		if url_parms["tld"] == self.tld:
-			print "%%%%%%%%%%%%%% Opa! domain found %s" % str(url_parms["netloc"])
+			print "%%%%%%%%%%%%%% NOTICE! domain found %s" % str(url_parms["netloc"])
 			self.file.write(url_parms["netloc"]+'\n')
-		# never save
-		return True
+		# crawl only webpages
+		if url.is_webpage():
+			return None
+		else:
+			return True
 	## end save_this_url
 	
 	def get_url_parms(self, url):
@@ -51,6 +54,10 @@ class MyCustomCrawler(HarvestMan):
 		url_parms["netloc"] = p_url.netloc
 		p_url_netloc = p_url.netloc.split(".")
 		url_parms["tld"] = p_url_netloc[len(p_url_netloc)-1]
+		if p_url_netloc == "":
+			print "URL parms [%s] %s" % (url, str(url_parms))
+			print "ERROR! - Wrong URL passed"
+			quit()
 		return url_parms	
 	
 ## END MyCustomCrawler
@@ -63,7 +70,8 @@ if __name__ == "__main__":
     config = crawler.get_config()
     config.set_option('fetchlevel_value',4)
     config.set_option('depth_value',2)
-    config.set_option('verbosity', 2)
+    config.basedir = "crawled_sites"
+    # config.set_option("basedir",{"basedir":"crawled_sites"})
     config.add(url=sys.argv[1])
     config.setup()
     # Register for 'save_url_data' event which will be called

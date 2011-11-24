@@ -13,7 +13,7 @@ import time
 # BEGIN Web6Discovery
 class Web6Discovery(NetPerfTest):
     
-    w6hints = ['','www.', 'www6.', 'w6.', 'www.v6.', 'ipv6.', 'www.ipv6.']
+    w6hints = ['','www.', 'www6.', 'w6.', 'www.v6.', 'ipv6.', 'www.ipv6.', '6.']
     
     # init
     def __init__(self):

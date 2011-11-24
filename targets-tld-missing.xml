@@ -1,0 +1,6 @@
+<targets>
+	<target handle="gy-tld-1" domain="gy.">Guyana TLD</target>
+	<target handle="gy-gub-1" domain="gina.gov.gy">Gobierno de Guyana</target>
+	<target handle="gf-tld-1" domain="gf.">French Guiana TLD</target>
+	<target handle="sr-tld-1" domain="sr.">Surinam TLD</target>
+</targets>

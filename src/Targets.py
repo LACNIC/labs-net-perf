@@ -48,7 +48,7 @@ def target_list():
     print "# Listing targets"
     print "#"
     
-    db.cursor.execute("SELECT * FROM targets ORDER BY `target-handle` DESC")
+    db.cursor.execute("SELECT * FROM targets ORDER BY `id` DESC")
     
     cnt = 0
     print "{0:5} | {1:14} | {2:20} | {3:20} | {4:30} | {5:15} | {6:20}". \

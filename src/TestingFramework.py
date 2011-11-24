@@ -53,10 +53,18 @@ class NetPerfTest:
             # print "[{0:3}] target is: {1}".format(cnt, str(target))
             cnt = cnt + 1
     ## END testAllTargets
+    
+    ## generate reports
+    def genReports(self):
+        pass
+    ## END generate reports
+    
 ## END NetPerfTest
 
+## contador de mensajes para el printd
 __x_msgCount = 0
 
+## print debug
 def printd(w_msg, w_testingMode):
     global __x_msgCount
     if w_testingMode:

@@ -18,12 +18,17 @@ import Web6Discovery
 print "NET-PERF (c) CarlosM carlos@lacnic.net"
 # parse cmd line
 options = "t:hf:"
-long_options = ["target=", "test=","help"]
+long_options = ["target=", "test=", "cmd=" ,"help", "filter="]
+options_dictionary = {"--filter":""}
 
 try:
     opts, args = getopt.gnu_getopt(sys.argv[1:], options, long_options)
+    # fill options dictionary
+    for o,a in opts:
+        print "o=%s, a=%s" % (o,a)
+        options_dictionary[o] = a
 except Exception:
-    print "Error!!"
+    print "Error!! parsing command line arguments"
     sys.exit(-1)
 
 for o,a in opts:
@@ -35,10 +40,19 @@ for o,a in opts:
         Targets.target_crud_main(a, opts, args)
         sys.exit(0)
     if o in ("--test"):
-        if opts[0][1] == "v6-dns-resol":
+        ## dns ipv6 test
+        if opts[0][1] == "v6-dns-resol" and opts[1][1] == "perform":
             print "Performing test (%s, %s) " % (str(opts), str(args))
             tst1 = Ipv6DnsTest.Ipv6DnsTest()
             tst1.testAllTargets()
+            break
+        
+        if opts[0][1] == "v6-dns-resol" and opts[1][1] == "report":
+            print "Generating reports (%s, %s)" % (str(opts), str(args))
+            tst1 = Ipv6DnsTest.Ipv6DnsTest()
+            tst1.genReports(options_dictionary["--filter"])
+            break
+            
         if opts[0][1] == "v6-serv-disc":
             print "Performing test (%s, %s) " % (str(opts), str(args))
             tst1 = Web6Discovery.Web6Discovery()
