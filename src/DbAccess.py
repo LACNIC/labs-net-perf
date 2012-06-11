@@ -20,7 +20,7 @@ class DbAccess:
         try:
             self.conn = MySQLdb.connect( host="localhost",
                                     user="root",
-                                    passwd="pass",
+                                    passwd="Js$z::VR8x",
                                     db="net-perf")
             self.cursor = self.conn.cursor(MySQLdb.cursors.DictCursor)
         except MySQLdb.Error(self.e):
