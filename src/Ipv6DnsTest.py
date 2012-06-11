@@ -8,6 +8,7 @@ import sys
 from TestingFramework import *
 from dns.resolver import *
 from DnsHelper import *
+frop IpToAsn import *
 import time
 import urllib2
 from urllib import quote_plus
@@ -68,7 +69,16 @@ class Ipv6DnsTest(NetPerfTest):
                     else:
                         result_values["status"] = "NoV6Answer"
                         result_values["int01"] = 0
-                    
+                # check if there are responding v6 ns from our region
+                if result_values['status'] == "OK":
+                    result_values['status'] = "OKExt"
+                    for v6server in v6ns.keys():
+                        # check if responding NS is from our region
+                        whois_data = IpToAsn.iptoasn(v6server)
+                        if whois_data['rir'] == 'lacnic':
+                            result_values['status'] == "OK"
+                            break
+                #                    
         else:
             # no NS at all found for domain
             result_values["int01"] = 0
@@ -100,7 +110,7 @@ class Ipv6DnsTest(NetPerfTest):
             sys.exit(-1)
             
         # set color codes for different statuses
-        code_colors = {'OK': '00FF00', 'NoV6NS': 'FF9999', 'NoV6Answer': 'FF0000', 'GENFAIL': '000000'}
+        code_colors = {'OK': '00FF00', 'OKExt': '0000FF', 'NoV6NS': 'FF9999', 'NoV6Answer': 'FF0000', 'GENFAIL': '000000'}
         google_chart_url = "http://chart.apis.google.com/chart?cht=map&chs=450&"
         chart_chld = "chld="
         chart_chco = "chco=999999|" # init with gray background
