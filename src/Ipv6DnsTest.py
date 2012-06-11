@@ -77,7 +77,7 @@ class Ipv6DnsTest(NetPerfTest):
                         whois_data = iptoasn(v6server)
                         printd("RIR for v6 NS %s: %s" % (v6server, whois_data['rir']), w_testingMode )
                         if whois_data['rir'] == 'lacnic':
-                            result_values['status'] == "OK"
+                            result_values['status'] = "OK"
                             break
                 #                    
         else:
