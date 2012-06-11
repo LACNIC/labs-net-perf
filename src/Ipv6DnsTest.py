@@ -8,7 +8,7 @@ import sys
 from TestingFramework import *
 from dns.resolver import *
 from DnsHelper import *
-frop IpToAsn import *
+from IpToAsn import *
 import time
 import urllib2
 from urllib import quote_plus
@@ -74,7 +74,7 @@ class Ipv6DnsTest(NetPerfTest):
                     result_values['status'] = "OKExt"
                     for v6server in v6ns.keys():
                         # check if responding NS is from our region
-                        whois_data = IpToAsn.iptoasn(v6server)
+                        whois_data = iptoasn(v6server)
                         if whois_data['rir'] == 'lacnic':
                             result_values['status'] == "OK"
                             break
