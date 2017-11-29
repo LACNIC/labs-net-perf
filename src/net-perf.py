@@ -50,7 +50,11 @@ for o,a in opts:
         if opts[0][1] == "v6-dns-resol" and opts[1][1] == "report":
             print "Generating reports (%s, %s)" % (str(opts), str(args))
             tst1 = Ipv6DnsTest.Ipv6DnsTest()
-            tst1.genReports(options_dictionary["--filter"])
+            if options_dictionary["--filter"] != "":
+                tst1.genReports(options_dictionary["--filter"])
+            else:
+                print "ERROR: filter --filter cannot be empty"
+                break
             break
             
         if opts[0][1] == "v6-serv-disc":
