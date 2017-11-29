@@ -13,11 +13,20 @@ El concepto original incluía generar una especie de framework para la obtenció
 
 ### Requisitos previos:
 
-- Paquete cliente MySQL: "sudo apt-get install default-libmysqlclient-dev"
+- Paquete cliente MySQL: 
+En Ubuntu se puede intentar con:
+```
+sudo apt-get install default-libmysqlclient-dev
+```
 - Python 2.x
    - Modulos:
       - dnspython
       - mysqlclient
+      - Se puede intentar con :
+      ```
+      sudo pip install -r requirements.txt
+      ```
+      
 - base de datos MySQL
 - importar en la base el dump o la estructura vacía
 - editar DbAccess.py y adecuar los parámetros de acceso a la base de datos
