@@ -3,3 +3,4 @@
 .bzrignore
 .project
 .pydevproject
+.pyc
