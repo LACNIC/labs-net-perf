@@ -1,4 +1,4 @@
-#!/usr/bin/python26
+#!/usr/bin/env python
 ################################################################################
 # NET-PERF
 # (c) CarlosM carlos@lacnic.net
