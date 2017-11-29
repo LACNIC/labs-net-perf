@@ -2,7 +2,7 @@
 
 ## ATENCIÓN
 
-**Este set de scripts fueron escritos en un corto período durante el año 2010. Luego de ese momento han recibido poca o ninguna atención.**
+**Este set de scripts fue desarrollado durante un corto período de tiempo en el año 2010. Luego de ese momento han recibido poca o ninguna atención.**
 **Los mismos pueden contener bugs o tener problemas para correr en versiones más recientes de python**
 
 ## Metricas y mediciones de red
